@@ -1,0 +1,20 @@
+String[] allLongestStrings(String[] inputArray) {
+    
+    String[] finalArray = new String[1];
+    finalArray[0] = inputArray[0];
+    int maxLength = inputArray[0].length();
+    int inputArrayLength = inputArray.length;
+    for (int i = 1; i<inputArrayLength; i++) {
+        if (inputArray[i].length() > maxLength) {
+            maxLength = inputArray[i].length();
+            finalArray = new String[1];
+            finalArray[0] = inputArray[i];
+        } else if (inputArray[i].length() == maxLength) {
+            String[] copy = finalArray;
+            finalArray = new String[copy.length+1];
+            System.arraycopy(copy, 0, finalArray, 0, finalArray.length-1);
+            finalArray[finalArray.length-1] = inputArray[i];
+        }
+    }
+    return finalArray;
+}
